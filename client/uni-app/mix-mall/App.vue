@@ -84,7 +84,9 @@ export default {
 <style>
 @import 'colorui/main.css';
 @import 'colorui/icon.css';
+//@import "static/iconfont.css";
 </style>
+
 <style lang="scss">
 uni-rich-text img {
 	max-width: 100% !important;

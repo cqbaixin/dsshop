@@ -1,5 +1,5 @@
 {
-    "name" : "DSSHOP电商商城",
+    "name" : "水果",
     "appid" : "",
     "description" : "",
     "versionName" : "1.0.0",
@@ -60,7 +60,7 @@
     "mp-weixin" : {
         /* 小程序特有相关 */
         "usingComponents" : true,
-        "appid" : "",
+        "appid" : "wxd408f78cc96ddcfb",
         "setting" : {
             "urlCheck" : true,
             "minified" : true,

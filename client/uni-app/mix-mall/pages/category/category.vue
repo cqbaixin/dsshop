@@ -8,22 +8,42 @@
 		<scroll-view scroll-with-animation scroll-y class="right-aside" @scroll="asideScroll" :scroll-top="tabScrollTop">
 			<template v-if="slist.length > 0">
 				<view v-for="item in slist" :key="item.id" class="s-list" :id="'main-'+item.id">
-					<text class="s-item">{{item.name}}</text>
+					<text class="s-item">手机</text>
 					<view class="t-list">
 						<view @click="navToList(item.id, titem.id)" v-if="titem.pid === item.id" class="t-item text-cut" v-for="titem in tlist" :key="titem.id">
-							<image :src="titem.resources.img  | smallImage(80)" lazy-load></image>
-							<text class="text-cut text-center">{{titem.name}}</text>
+							<view class="">
+								<image :src="titem.resources.img  | smallImage(80)" lazy-load></image>
+							</view>
+							<view class="text-cut text-center">
+								<text >这是一行title这是一行title这是一行title这是一行title这是一行title这是一行title</text>
+								
+							</view>
+							<view  class="all_qian">
+								<text class="qian">￥65</text>
+								<view class="jia"><text class="cuIcon-add text-red" ></text></view>
+								
+							</view>
+							
+							
 						</view>
 					</view>
 				</view>
 			</template>
 			<template v-else>
 				<view v-for="item in flist" :key="item.id" class="s-list" :id="'main-'+item.id">
-					<text class="s-item"></text>
+					<text class="s-item">手机</text>
 					<view class="t-list">
 						<view @click="navToList(0, titem.id)" v-if="titem.pid === item.id" class="t-item text-cut" v-for="titem in tlist" :key="titem.id">
 							<image mode="aspectFit" :src="titem.resources.img  | smallImage(80)" lazy-load></image>
-							<text class="text-cut text-center">{{titem.name}}</text>
+							<view class="text-cut text-center">
+								<text >这是一行title这是一行title这是一行title这是一行title这是一行title这是一行title</text>
+								
+							</view>
+							<view class="all_qian">
+								<text  class="qian">￥65</text>
+								<view class="jia"><text class="cuIcon-add text-red" ></text></view>
+							</view>
+							
 						</view>
 					</view>
 				</view>
@@ -215,7 +235,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		width: 100%;
-		background: #fff;
+		background: #f8f8f8;
 		padding-top: 12upx;
 		&:after{
 			content: '';
@@ -225,21 +245,57 @@
 	}
 	.t-item{
 		flex-shrink: 0;
-		display: flex;
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
-		width: 176upx;
+		width: 98%;
 		font-size: 26upx;
 		color: #666;
 		padding-bottom: 20upx;
-
+		background: #fff;
+		margin: 19rpx 12rpx 19rpx 0rpx;
+		border-radius: 19rpx;
 		image{
 			width: 140upx;
 			height: 140upx;
+			float: left;
+			margin-top: 33rpx;
 		}
 		.text-cut{
-			width: 176upx;
+			float: left;
+			width: 360rpx;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			display: -moz-box;
+			-moz-line-clamp: 2;
+			-moz-box-orient: vertical;
+			word-wrap: break-word;
+			word-break: break-all;
+			white-space: normal; 
+			margin-top: 33rpx;
 		}
+		.all_qian{
+			width: 65%;
+			margin-top: 39rpx;
+			float: left;
+			.qian{	
+				float: left;
+				font-size: 36rpx;
+				color: red;
+			}
+			.jia{
+				float: right;
+				.text-red{
+					color: red;
+					font-size: 44rpx;
+				}
+				margin-left: 15rpx;
+				
+			}
+		}
+		
 	}
 </style>
