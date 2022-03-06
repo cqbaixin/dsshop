@@ -22,6 +22,7 @@
 					<text class="price" v-else-if="specificationDefaultDisplay.price_show.length === 1">¥{{specificationDefaultDisplay.price_show[0]}}</text>
 				</template>
 				<text class="stock">库存：{{specificationDefaultDisplay.inventory_show}}件</text>
+				<text class="stock">商品：{{getLists.name}}</text>
 				<view class="selected">
 					<text class="selected-text" >{{ specificationDefaultDisplay.selected }}</text>
 				</view>
@@ -123,7 +124,7 @@ export default{
 		getList(newVal) {
 			this.$emit('getList', newVal)
 			this.getLists = this.getList
-			if(!this.update && !this.loaded){
+			if(!this.update){
 				this.loadData()
 			}
 			
@@ -145,6 +146,7 @@ export default{
 		loadData() {
 			this.loaded = true
 			this.selectedSku = []
+			console.log(this.getLists)
 			// Sku
 			if (this.getLists.good_sku.length > 0) {
 				const { productSkus, specification } = param2Data(this.getLists.good_sku)

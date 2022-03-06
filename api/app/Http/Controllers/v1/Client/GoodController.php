@@ -68,6 +68,15 @@ class GoodController extends Controller
                 $query->where('category_id', $request->pid);
             });
         }
+
+        if ($request->has('first_category_id')) {
+            $category_ids = $request->input("first_category_id");
+            $all_category = Category::where('state', Category::CATEGORY_STATE_YES)->select('id', 'pid')->get()->toArray();
+            $all_categorys = getsAllValues(getParentClassHierarchyData($category_ids,genTree($all_category)),"id");
+            $q->whereIn("category_id",$all_categorys);
+        }
+
+
         // 获取指定分类下的商品
         if ($request->has('category_id')) {
             $Category = Category::where('state', Category::CATEGORY_STATE_YES)->select('id', 'pid')->get();
@@ -76,10 +85,10 @@ class GoodController extends Controller
                 $q->whereIn('category_id', $allSublevel);
             }
         }
-        $paginate = $q->with(['resources' => function ($q) {
+        $paginate = $q->with(['resourcesMany','resources' => function ($q) {
             $q->where('depict', 'like', '%_zimg');
         }, 'goodSku' => function ($q) {
-            $q->select('good_id', 'price', 'inventory');
+            $q->select('good_id',"id", 'price', 'inventory','product_sku');
         }])->select('updated_at', 'id', 'name', 'number', 'market_price', 'sales', 'order_price', 'brand_id', 'price', 'is_show', 'is_recommend', 'is_new', 'is_hot', 'sort', 'time')->paginate($limit);
         if ($paginate) {
             foreach ($paginate as $id => $p) {
